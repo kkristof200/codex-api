@@ -1,0 +1,24 @@
+services:
+  serve:
+    build: .
+    command: ["codexapi", "serve", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "${PORT:-8000}:8000"
+    env_file:
+      - .env
+    volumes:
+      - codexapi-data:/data
+    restart: unless-stopped
+
+  login:
+    build: .
+    command: ["codexapi", "login"]
+    env_file:
+      - .env
+    volumes:
+      - codexapi-data:/data
+    profiles:
+      - login
+
+volumes:
+  codexapi-data:
