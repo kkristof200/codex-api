@@ -1,7 +1,13 @@
 # CodexAPI
 
 ![Python](https://img.shields.io/badge/python-3.13%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 ![uv](https://img.shields.io/badge/uv-workspace-blueviolet)
+![Stars](https://img.shields.io/github/stars/you/codex-api)
+![Forks](https://img.shields.io/github/forks/you/codex-api)
+![Open PRs](https://img.shields.io/github/issues-pr/you/codex-api)
+![Open Issues](https://img.shields.io/github/issues/you/codex-api)
+![Contributors](https://img.shields.io/github/contributors/you/codex-api)
 
 
 A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.
