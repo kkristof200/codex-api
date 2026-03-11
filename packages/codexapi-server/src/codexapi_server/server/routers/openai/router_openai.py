@@ -32,7 +32,7 @@ def chat_completions(req: OpenAIChatCompletionRequest, request: Request) -> Any:
                 "content": [
                     {
                         "type": "input_text",
-                        "text": m["content"] if isinstance(m["content"], str) else m["content"][0]["text"]  # type: ignore[index]
+                        "text": m["content"] if isinstance(m["content"], str) else list(m["content"])[0]["text"]  # type: ignore[index]
                     }
                 ]
             }
