@@ -25,5 +25,5 @@ class OpenAIResponseCompletionRequest(BaseModel):
     stream: bool = False
     temperature: float = 1.0
 
-    input: str | EasyInputMessage
+    input: str | List[EasyInputMessage]
     max_output_tokens: int | None = None
