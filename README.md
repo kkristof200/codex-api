@@ -270,3 +270,5 @@ codexapi info      Print the currently stored account and token info
 
 ---
 
+## Credits
+This project was inspired by [ChatMock](https://github.com/RayBytes/ChatMock)
