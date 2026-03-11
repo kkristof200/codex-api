@@ -1,17 +1,10 @@
-<div align="center">
-  <h1>CodexAPI
-  <div align="center">
-<a href="https://github.com/kkristof200/codex-api/stargazers"><img src="https://img.shields.io/github/stars/kkristof200/codex-api" alt="Stars Badge"/></a>
-<a href="https://github.com/kkristof200/codex-api/network/members"><img src="https://img.shields.io/github/forks/kkristof200/codex-api" alt="Forks Badge"/></a>
-<a href="https://github.com/kkristof200/codex-api/pulls"><img src="https://img.shields.io/github/issues-pr/kkristof200/codex-api" alt="Pull Requests Badge"/></a>
-<a href="https://github.com/kkristof200/codex-api/issues"><img src="https://img.shields.io/github/issues/kkristof200/codex-api" alt="Issues Badge"/></a>
-</div>
-  </h1>
+# CodexAPI
 
-  <p><b>OpenAI compatible API powered by your ChatGPT plan.</b></p>
-  <p>A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.</p>
-  <br>
-</div>
+**OpenAI compatible API powered by your ChatGPT plan.**
+
+A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.
+
+  
 
 
 ```
@@ -106,8 +99,6 @@ Available options
 | `--enable-web-search` | `CHATGPT_LOCAL_ENABLE_WEB_SEARCH` | `false`     | Enable web search by default       |
 
 
-
-
 ---
 
 ### Option B — Docker
@@ -132,8 +123,6 @@ Environment variables
 | `PORT`                            | Host port to expose (default: `8000`)                          |
 
 
-
-
 **2. Login**
 
 ```bash
@@ -148,7 +137,7 @@ Your browser will open (or a URL will be printed). Complete login — the contai
 **3. Serve**
 
 ```bash
-docker compose up --build serve
+docker compose up --build -d serve
 ```
 
 The server is available at `http://localhost:8000`.
@@ -279,4 +268,5 @@ codexapi info      Print the currently stored account and token info
 ---
 
 ## Credits
+
 This project was inspired by [ChatMock](https://github.com/kkristof200/codex-api)

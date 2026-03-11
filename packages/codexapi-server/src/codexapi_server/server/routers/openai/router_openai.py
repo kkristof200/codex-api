@@ -31,7 +31,7 @@ def chat_completions(req: OpenAIChatCompletionRequest, request: Request) -> Any:
                 "role": m["role"],
                 "content": [
                     {
-                        "type": "input_text",
+                        "type": "output_text" if m["role"] == "assistant" else "input_text",
                         "text": m["content"] if isinstance(m["content"], str) else list(m["content"])[0]["text"]  # type: ignore[index]
                     }
                 ]
@@ -55,7 +55,7 @@ def completions(req: OpenAITextCompletionRequest, request: Request) -> Any:
         messages=[
             {
                 "type": "message",
-                "role": "assistant",
+                "role": "user",
                 "content": [
                     {
                         "type": "input_text",
