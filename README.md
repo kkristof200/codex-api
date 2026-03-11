@@ -1,16 +1,20 @@
-# CodexAPI
+<div align="center">
+  <h1>CodexAPI
+  <div align="center">
+<a href="https://github.com/kkristof200/codex-api/stargazers"><img src="https://img.shields.io/github/stars/kkristof200/codex-api" alt="Stars Badge"/></a>
+<a href="https://github.com/kkristof200/codex-api/network/members"><img src="https://img.shields.io/github/forks/kkristof200/codex-api" alt="Forks Badge"/></a>
+<a href="https://github.com/kkristof200/codex-api/pulls"><img src="https://img.shields.io/github/issues-pr/kkristof200/codex-api" alt="Pull Requests Badge"/></a>
+<a href="https://github.com/kkristof200/codex-api/issues"><img src="https://img.shields.io/github/issues/kkristof200/codex-api" alt="Issues Badge"/></a>
+<a href="https://github.com/kkristof200/codex-api/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/kkristof200/codex-api?color=2b9348"></a>
+<a href="https://github.com/kkristof200/codex-api/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kkristof200/codex-api?color=2b9348" alt="License Badge"/></a>
+</div>
+  </h1>
 
-![Python](https://img.shields.io/badge/python-3.13%2B-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![uv](https://img.shields.io/badge/uv-workspace-blueviolet)
-![Stars](https://img.shields.io/github/stars/kkristof200/codex-api)
-![Forks](https://img.shields.io/github/forks/kkristof200/codex-api)
-![Open PRs](https://img.shields.io/github/issues-pr/kkristof200/codex-api)
-![Open Issues](https://img.shields.io/github/issues/kkristof200/codex-api)
-![Contributors](https://img.shields.io/github/contributors/kkristof200/codex-api)
+  <p><b>OpenAI compatible API powered by your ChatGPT plan.</b></p>
+  <p>A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.</p>
+  <br>
+</div>
 
-
-A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.
 
 ```
 Your client  ──►  CodexAPI (:8000)  ──►  chatgpt.com
@@ -277,4 +281,4 @@ codexapi info      Print the currently stored account and token info
 ---
 
 ## Credits
-This project was inspired by [ChatMock](https://github.com/RayBytes/ChatMock)
+This project was inspired by [ChatMock](https://github.com/kkristof200/codex-api)
