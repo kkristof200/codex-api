@@ -3,11 +3,11 @@
 ![Python](https://img.shields.io/badge/python-3.13%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![uv](https://img.shields.io/badge/uv-workspace-blueviolet)
-![Stars](https://img.shields.io/github/stars/you/codex-api)
-![Forks](https://img.shields.io/github/forks/you/codex-api)
-![Open PRs](https://img.shields.io/github/issues-pr/you/codex-api)
-![Open Issues](https://img.shields.io/github/issues/you/codex-api)
-![Contributors](https://img.shields.io/github/contributors/you/codex-api)
+![Stars](https://img.shields.io/github/stars/kkristof200/codex-api)
+![Forks](https://img.shields.io/github/forks/kkristof200/codex-api)
+![Open PRs](https://img.shields.io/github/issues-pr/kkristof200/codex-api)
+![Open Issues](https://img.shields.io/github/issues/kkristof200/codex-api)
+![Contributors](https://img.shields.io/github/contributors/kkristof200/codex-api)
 
 
 A local OpenAI-compatible API proxy that routes requests through your ChatGPT account. Drop it in front of any OpenAI-compatible client and use GPT-5 and Codex models without a direct API key.
@@ -38,7 +38,7 @@ Your client  ──►  CodexAPI (:8000)  ──►  chatgpt.com
 
 ```bash
 # 1. Install
-git clone https://github.com/you/codex-api && cd codex-api
+git clone https://github.com/kkristof200/codex-api && cd codex-api
 pip install uv && uv sync
 
 # 2. Login
@@ -62,7 +62,7 @@ Then point any OpenAI-compatible client at `http://localhost:8000`.
 **1. Install**
 
 ```bash
-git clone https://github.com/you/codex-api
+git clone https://github.com/kkristof200/codex-api
 cd codex-api
 pip install uv
 uv sync
@@ -170,7 +170,7 @@ pip install ./packages/codexapi-client
 Or directly from GitHub:
 
 ```bash
-pip install "codexapi-client @ git+https://github.com/you/codex-api.git#subdirectory=packages/codexapi-client"
+pip install "codexapi-client @ git+https://github.com/kkristof200/codex-api.git#subdirectory=packages/codexapi-client"
 ```
 
 ```python
