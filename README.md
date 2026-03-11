@@ -5,8 +5,6 @@
 <a href="https://github.com/kkristof200/codex-api/network/members"><img src="https://img.shields.io/github/forks/kkristof200/codex-api" alt="Forks Badge"/></a>
 <a href="https://github.com/kkristof200/codex-api/pulls"><img src="https://img.shields.io/github/issues-pr/kkristof200/codex-api" alt="Pull Requests Badge"/></a>
 <a href="https://github.com/kkristof200/codex-api/issues"><img src="https://img.shields.io/github/issues/kkristof200/codex-api" alt="Issues Badge"/></a>
-<a href="https://github.com/kkristof200/codex-api/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/kkristof200/codex-api?color=2b9348"></a>
-<a href="https://github.com/kkristof200/codex-api/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kkristof200/codex-api?color=2b9348" alt="License Badge"/></a>
 </div>
   </h1>
 
