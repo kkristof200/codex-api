@@ -96,6 +96,14 @@ class CodexAPI:
             "x-codex-turn-metadata": turn_metadata,
         })
 
+        filtered_messages: List[Dict[str, Any]] = []
+
+        for message in messages:
+            if message["role"] == "system":
+                instructions = message["content"][0]["text"]
+            else:
+                filtered_messages.append(message)
+
         data = {
             "type": "response.create",
             "model": model_name,
@@ -104,7 +112,7 @@ class CodexAPI:
                 "summary": reasoning_summary,
             },
             "instructions": instructions or "",
-            "input": messages,
+            "input": filtered_messages,
             # "store": False,
             "stream": True,
             "tool_choice": "auto",
