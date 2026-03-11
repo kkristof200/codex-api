@@ -49,7 +49,7 @@ class OAuthHTTPServer(http.server.HTTPServer):
         verbose: bool = False,
     ) -> None:
         if server_address is None:
-            server_address = ("127.0.0.1", REQUIRED_PORT)
+            server_address = ("0.0.0.0", REQUIRED_PORT)
 
         super().__init__(server_address, request_handler_class, bind_and_activate=True)
         self.exit_code = 1
@@ -284,58 +284,3 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
 
     def _exchange_code(self, code: str) -> Tuple[AuthBundle, str]:
         return self.server.exchange_code(code)
-
-    def _maybe_obtain_api_key(
-        self,
-        token_claims: Dict[str, Any],
-        access_claims: Dict[str, Any],
-        token_data: TokenData,
-    ) -> Tuple[str | None, str | None]:
-        org_id = token_claims.get("organization_id")
-        project_id = token_claims.get("project_id")
-        if not org_id or not project_id:
-            query = {
-                "id_token": token_data.id_token,
-                "needs_setup": "false",
-                "org_id": org_id or "",
-                "project_id": project_id or "",
-                "plan_type": access_claims.get("chatgpt_plan_type"),
-                "platform_url": "https://platform.openai.com",
-            }
-            return None, f"{URL_BASE}/success?{urllib.parse.urlencode(query)}"
-
-        today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
-        exchange_data = urllib.parse.urlencode(
-            {
-                "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
-                "client_id": self.server.client_id,
-                "requested_token": "openai-api-key",
-                "subject_token": token_data.id_token,
-                "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
-                "name": f"ChatGPT Local [auto-generated] ({today})",
-            }
-        ).encode()
-
-        with urllib.request.urlopen(
-            urllib.request.Request(
-                self.server.token_endpoint,
-                data=exchange_data,
-                method="POST",
-                headers={"Content-Type": "application/x-www-form-urlencoded"},
-            ),
-            context=_SSL_CONTEXT,
-        ) as resp:
-            exchange_payload = json.loads(resp.read().decode())
-            exchanged_access_token = exchange_payload.get("access_token")
-
-        chatgpt_plan_type = access_claims.get("chatgpt_plan_type")
-        success_url_query = {
-            "id_token": token_data.id_token,
-            "needs_setup": "false",
-            "org_id": org_id,
-            "project_id": project_id,
-            "plan_type": chatgpt_plan_type,
-            "platform_url": "https://platform.openai.com",
-        }
-        success_url = f"{URL_BASE}/success?{urllib.parse.urlencode(success_url_query)}"
-        return exchanged_access_token, success_url

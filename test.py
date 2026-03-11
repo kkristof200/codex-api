@@ -2,7 +2,7 @@ import json
 import os
 from dotenv import load_dotenv
 
-from codexapi.codexapi.codexapi import CodexAPI, OpenAIChatCompletionAdaptorWS, OpenAIChatCompletionAdaptorHTTP
+from codexapi_client import CodexAPI, OpenAIChatCompletionAdaptorWS, OpenAIChatCompletionAdaptorHTTP
 
 
 load_dotenv()

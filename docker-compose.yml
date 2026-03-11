@@ -12,7 +12,9 @@ services:
 
   login:
     build: .
-    command: ["codexapi", "login"]
+    command: ["codexapi", "login", "--no-browser"]
+    ports:
+      - "1455:1455"
     env_file:
       - .env
     volumes:
