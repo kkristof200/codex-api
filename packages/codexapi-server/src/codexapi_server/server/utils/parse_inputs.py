@@ -28,15 +28,16 @@ def parse_model_config(
     web_search: bool | None = None
     reasoning_summary: REASONING_SUMMARY | None = None
 
-    # gpt 5.4 high [web_search:true,reasoning_summary:detailed]
-
     for part in copy.deepcopy(model_parts):
         if part.startswith("[") and part.endswith("]"):
             # extra args
+            _part = part[1:-1]
             extra_args = {
-                kw_pair[0]: kw_pair[-1]
-                for kw_pair in part.split(":")
-                for kw in part.split(",")
+                k: v
+                for k, v in (
+                    kw.split(":", 1)
+                    for kw in _part.split(",")
+                )
             }
 
             for k, v in extra_args.items():

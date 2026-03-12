@@ -4,12 +4,14 @@ from typing import Any, Dict, Iterator, List, Optional
 from websocket import WebSocket, create_connection
 
 from .adaptors import IResponsesAdaptorWS, IResponsesAdaptorHTTP
-from .utils import ensure_session_id
+from .utils import SessionManager
 
 from .constants import GPT_MODEL_NAME, REASONING_EFFORT, REASONING_SUMMARY, URL_CODEX_WSS, DEFAULT_CODEX_HEADERS
 
 
 class CodexAPI:
+    session_manager = SessionManager()
+
     def request_ws(
         self,
         model_name: GPT_MODEL_NAME,
@@ -85,15 +87,26 @@ class CodexAPI:
         session_id: Optional[str] = None,
         timeout_s: float = 600.0,
     ) -> Iterator[Dict[str, Any]]:
-        sid = ensure_session_id(instructions, messages, client_supplied=session_id)
-        turn_metadata = json.dumps({"turn_id": "", "sandbox": "seatbelt"}, separators=(",", ":"))
+        session_state = self.session_manager.create(
+            instructions=instructions,
+            input_items=messages,
+            client_supplied=session_id,
+            request_context={
+                "model_name": model_name,
+                "reasoning_effort": reasoning_effort,
+                "reasoning_summary": reasoning_summary,
+                "web_search": web_search,
+            },
+        )
+
+        # turn_metadata = json.dumps({"turn_id": "", "sandbox": "seatbelt"}, separators=(",", ":"))
 
         headers: Dict[str, str] = DEFAULT_CODEX_HEADERS.copy()
         headers.update({
             "Authorization": f"Bearer {auth_token}",
             "chatgpt-account-id": chatgpt_acc_id,
-            "session_id": sid,
-            "x-codex-turn-metadata": turn_metadata,
+            "session_id": session_state.session_id,
+            # "x-codex-turn-metadata": turn_metadata,
         })
 
         filtered_messages: List[Dict[str, Any]] = []
@@ -117,7 +130,7 @@ class CodexAPI:
             "stream": True,
             "tool_choice": "auto",
             "parallel_tool_calls": True,
-            "prompt_cache_key": sid,
+            "prompt_cache_key": session_state.prompt_cache_key,
             # "text": {
             #     "verbosity": "low"
             # },
@@ -138,6 +151,8 @@ class CodexAPI:
             data["include"] = [
                 "reasoning.encrypted_content"
             ]
+
+        print(json.dumps(data, separators=(",", ":"), indent=4))
 
         ws: WebSocket = create_connection(URL_CODEX_WSS, header=headers, timeout=timeout_s)
         try:
